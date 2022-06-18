@@ -1,0 +1,16 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ArraysAndStrings
+{
+    public class Chapter1_1p7
+    {
+        public static int[,] RotateMatrix(int[,] matrix)
+        {
+            return matrix;
+        }
+    }
+}
