@@ -256,10 +256,19 @@ using static ArraysAndStrings.DuplicateFiles_InterviewCake;
 //    Console.WriteLine(permutation);
 
 // Two-dimensional array.
-int[,] arr = new int[4, 4] { { 0, 1, 2, 3 }, { 4, 5, 6, 7 }, { 8, 9, 10, 11 }, { 12, 13, 14, 15 } };
+//int[,] arr = new int[4, 4] { { 0, 1, 2, 3 }, { 4, 5, 6, 7 }, { 8, 9, 10, 11 }, { 12, 13, 14, 15 } };
 
-Console.WriteLine("Matrix Search");
-Boolean contains = MatrixSearch.contains(arr, 5);
-Console.WriteLine(contains);
+//Console.WriteLine("Matrix Search");
+//Boolean contains = MatrixSearch.contains(arr, 5);
+//Console.WriteLine(contains);
 
+//Console.ReadLine();
+
+string a = Console.ReadLine();
+
+string b = Console.ReadLine();
+
+int res = Anagrams.makeAnagram(a, b);
+
+Console.WriteLine(res);
 Console.ReadLine();
