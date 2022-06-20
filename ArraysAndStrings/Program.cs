@@ -264,11 +264,53 @@ using static ArraysAndStrings.DuplicateFiles_InterviewCake;
 
 //Console.ReadLine();
 
-string a = Console.ReadLine();
+//string a = Console.ReadLine();
 
-string b = Console.ReadLine();
+//string b = Console.ReadLine();
 
-int res = Anagrams.makeAnagram(a, b);
+//int res = Anagrams.makeAnagram(a, b);
 
-Console.WriteLine(res);
-Console.ReadLine();
+//Console.WriteLine(res);
+//Console.ReadLine();
+
+
+//Console.WriteLine(Array:);
+// Array of integers
+//int[] numbers = new int[3];
+// this will convert it to string
+// in the output you will see that all the numbers in our array initialized to 0.
+//numbers[0] = 10;
+//numbers[1] = 20;
+//numbers[2] = 30;
+//int[] numbers = { 10, 20, 30 };
+
+//Console.WriteLine(string.Join(" ",numbers));
+// print the size of the Array
+// Arrays are static and they have a fixed size and this size can not change.
+//Console.WriteLine(numbers.Length);
+
+
+//Array numbers = new Array(length:3);
+//numbers.insert(item: 10);
+//numbers.insert(item: 20);
+//numbers.insert(item: 30);
+//numbers.insert(item: 40);
+//numbers.removeAt(index: 4);
+// this will print the index of the first occurance item
+//Console.WriteLine(numbers.indexOf(item: 100));
+//numbers.print();
+
+// C# has a List class that is generic and accepts different types 
+//List<int> list = new List<int>();
+//list.Add(10);
+//list.Add(20);
+//list.Add(30);
+//list.RemoveAt(0);
+//Console.WriteLine(list.IndexOf(20));
+//Console.WriteLine(list.Contains(20));
+//int count =  list.Count;
+//Console.WriteLine(count);
+// convert list to a regular array
+//list.ToArray();
+
+//Console.WriteLine(string.Join(" ",list));
