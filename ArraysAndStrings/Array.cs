@@ -7,8 +7,10 @@
     // We must determine in advance how many items we want to store in an array. If uncertain, we may need to make a guess. If our
     // guess is too large, we waste memory; if it's too small, our array fills up quickly, and to add another item, we have to resize the array.
     // Resizing involves allocating a larger array and copying all the items from the old array to the new one. Insertion time complexity becomes O(n).
+    // Removing an item from the last index is the best case scenariowith a time complexity of O(1). However in the worst-case scenario, when removing an item from the first index in the array,
+    // all subsequent items need to be shifted to the left, resulting in n operations and a time complexity of O(n).
     // If uncertain about the size of an array and dealing with frequent insertions and deletions alot, a linked list may be a more suitable alternative.
-    // Dynamic Array
+    // Let's create a dynamic Array in C#.
     public class Array
     {
         private int[] items;
