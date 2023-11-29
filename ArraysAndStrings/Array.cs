@@ -10,7 +10,7 @@
     // Removing an item from the last index is the best case scenariowith a time complexity of O(1). However in the worst-case scenario, when removing an item from the first index in the array,
     // all subsequent items need to be shifted to the left, resulting in n operations and a time complexity of O(n).
     // If uncertain about the size of an array and dealing with frequent insertions and deletions alot, a linked list may be a more suitable alternative.
-    // Let's create a dynamic Array in C#.
+    // Let's create a dynamic Array in C#:
     public class Array
     {
         private int[] items;
