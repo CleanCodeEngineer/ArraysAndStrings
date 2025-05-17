@@ -8,13 +8,14 @@ namespace ArraysAndStrings
 {
     public class ReturnIndicesAndIsBalanced_InterviewQuestions
     {
+        // Hashmap (Dictionary)
         // Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
         // You may assume that each input would have exactly one solution, and you may not use the same element twice.
         // You can return the answer in any order.
         // Example 1:
         // Input: nums = [11, 2, 13, 7], target = 9
-        // Output: [0,1]
-        // Output: Because nums[0] + nums[1] == 9, we return [0, 1].
+        // Output: [1,3]
+        // Output: Because nums[1] + nums[3] == 9, we return [1, 3].
         // [3,2,4] target=6
         public int[] ReturnIndices(int[] arr, int target)
         {
@@ -38,58 +39,52 @@ namespace ArraysAndStrings
             return new int[] { };
         }
 
-        public bool IsBalanced(String input)
+        // Given a string containing just the characters '(', ')', '{', '}', '[', and ']', write a function to determine if the input string is valid.An input string is valid if:
+        // Open brackets are closed by the same type of brackets.
+        // Open brackets are closed in the correct order.
+        // Each closing bracket has a corresponding open bracket of the same type.
+        // Examples:
+        // Input: "{[()]}"      Output: true  
+        // Input: "{[(])}"      Output: false  
+        // Input: "{[}"         Output: false  
+        // Input: ""            Output: true  
+        // Input: "([{}])"      Output: true
+        public bool IsBalanced(string input)
         {
-            bool isBalanced = true;
-            Stack<char> s = new Stack<char>();
+            if (string.IsNullOrEmpty(input))
+                return true;
+
+            Stack<char> stack = new Stack<char>();
+            Dictionary<char, char> bracketPairs = new Dictionary<char, char>
+            {
+                { ')', '(' },
+                { ']', '[' },
+                { '}', '{' }
+            };
 
             foreach (char c in input)
             {
-                if (c == '{' || c == '[' || c == '(')
+                if (bracketPairs.ContainsValue(c))
                 {
-                    s.Push(c);
+                    stack.Push(c);
                 }
-
-                if (c == '}')
+                else if (bracketPairs.ContainsKey(c))
                 {
-                    char topChar = s.Pop();
-
-                    if (topChar != '{')
+                    if (stack.Count == 0 || stack.Pop() != bracketPairs[c])
                     {
-                        isBalanced = false;
-                        return isBalanced;
+                        return false;
                     }
                 }
-
-                if (c == ']')
+                else
                 {
-                    char topChar = s.Pop();
-
-                    if (topChar != '[')
-                    {
-                        isBalanced = false;
-                        return isBalanced;
-                    }
-                }
-
-                if (c == ')')
-                {
-                    char topChar = s.Pop();
-
-                    if (topChar != '(')
-                    {
-                        isBalanced = false;
-                        return isBalanced;
-                    }
+                    // Uncomment the next line if you want to reject non-bracket characters
+                    // return false;
+                    continue; // or skip other characters if allowed
                 }
             }
-
-            if (s.Count != 0)
-            {
-                isBalanced = false;
-            }
-
-            return isBalanced;
+            // Return true if every opening bracket has been correctly closed and matched — otherwise, return false.
+            // unmatched opening brackets — like "(((" or "{[("
+            return stack.Count == 0;
         }
     }
 }
