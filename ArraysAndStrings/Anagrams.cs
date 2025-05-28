@@ -1,69 +1,48 @@
 ﻿namespace ArraysAndStrings
 {
+    // Problem: Make Anagram
     public class Anagrams
     {
-        //cde
-        //abc
+        // cde
+        // abc
         // Complete the makeAnagram function below.
+        // Prompt: Given two strings, a and b, determine the minimum number of character deletions required to make the two strings anagrams of each other.
+        // An anagram of a string is another string that contains the same characters, only the order of characters can be different.
+        // You can delete characters from either string to make them anagrams.
         public static int makeAnagram(string a, string b)
         {
-            int deletionCount = 0;
-            Dictionary<char, int> aCharacters = new Dictionary<char, int>();
-            Dictionary<char, int> bCharacters = new Dictionary<char, int>();
-            Dictionary<char, int> allCharacters = new Dictionary<char, int>();
+            Dictionary<char, int> characters = new Dictionary<char, int>();
 
-            // saving characters of string a in a dictionary
+            // Count frequency of characters in string a
             foreach (char c in a)
             {
-                if (!aCharacters.ContainsKey(c))
+                if (!characters.ContainsKey(c))
                 {
-                    aCharacters.Add(c, 1); // {{c,1}, {d,1}, {e,1}}
-
-                    if (!allCharacters.ContainsKey(c))
-                        allCharacters.Add(c, 0); // {{c,0}, {d,0}, {e,0}}                
+                    characters[c]++;
                 }
                 else
                 {
-                    aCharacters[c]++;
+                    characters[c] = 1;
                 }
             }
 
-            // saving characters of string b in a dictionary
+            // subtract frequency of characters in string b
             foreach (char c in b)
             {
-                if (!bCharacters.ContainsKey(c))
+                if (!characters.ContainsKey(c))
                 {
-                    bCharacters.Add(c, 1); // {{a,1}, {b,1}, {c,1}}
-
-                    if (!allCharacters.ContainsKey(c))
-                        allCharacters.Add(c, 0); // {{c,0}, {d,0}, {e,0}, {a,0}, {b,0}}
+                    characters[c]--;
                 }
                 else
                 {
-                    bCharacters[c]++;
+                    characters[c] = -1;
                 }
             }
 
-            foreach (KeyValuePair<char, int> c in allCharacters) // c , d, e, a, b
+            int deletionCount = 0;
+            foreach (var count in characters.Values) // c , d, e, a, b
             {
-
-                if (bCharacters.ContainsKey(c.Key) && aCharacters.ContainsKey(c.Key))
-                {
-                    deletionCount += Math.Abs(bCharacters[c.Key] -
-                    aCharacters[c.Key]);
-                }
-                else if (bCharacters.ContainsKey(c.Key))
-                {
-                    deletionCount += Math.Abs(bCharacters[c.Key] -
-                    allCharacters[c.Key]);
-                }
-                else if (aCharacters.ContainsKey(c.Key))
-                {
-                    deletionCount += Math.Abs(aCharacters[c.Key] -
-                    allCharacters[c.Key]);
-                }
-                //{{c,0} , {d,1}
-
+                deletionCount += Math.Abs(count);
             }
 
             return deletionCount;
