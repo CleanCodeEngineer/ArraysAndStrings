@@ -41,12 +41,39 @@ namespace ArraysAndStrings
                         }
 
                         if (cache[i, j] > output.Length)
-                            output = a.Substring(i - cache[i, j] + 1, i + 1);
+                            output = a.Substring(i - cache[i, j] + 1, cache[i, j]);
                     }
                 }
             }
 
             return output;
+        }
+
+        // Question: Given a string s, find the length of the longest substring without repeating characters.
+        // Example:
+        // Input: s = "abcabcbb"
+        // Output: 3
+        // Explanation: The answer is "abc", with the length of 3.
+        // It uses the sliding window technique — a key skill they look for.
+        // It tests hashing (e.g., using a HashSet or HashMap).
+        public int LengthOfLongestSubstring(string s)
+        {
+            HashSet<char> seen = new HashSet<char>(); // currently in our window
+            int left = 0, maxLength = 0; // left index of our window, length of the longest valid window we’ve seen so far
+
+            for (int right = 0; right < s.Length; right++)
+            {
+                while (seen.Contains(s[right]))
+                {
+                    seen.Remove(s[left]);
+                    left++;
+                }
+
+                seen.Add(s[right]);
+                maxLength = Math.Max(maxLength, right - left + 1);
+            }
+
+            return maxLength;
         }
     }
 }

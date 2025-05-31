@@ -6,39 +6,35 @@ namespace ArraysAndStrings
         // String is composed of various brackets, barces and paranthesis.
         public static bool IsValid(string str)
         {
-            if (str == null)
+            if (string.IsNullOrEmpty(str))
                 return true;
 
-            if (str.Length % 2 != 0)
-                return false;
-
-            char[] str_array = str.ToCharArray();
-
-            Stack<char> chars = new Stack<char>();
-
-            for (int i = 0; i < str_array.Length; i++)
+            Stack<char> stack = new Stack<char>();
+            Dictionary<char, char> bracketPairs = new Dictionary<char, char>
             {
-                if (str_array[i] == '(' || str_array[i] == '[' || str_array[i] == '{')
+                {')', '(' },
+                {'}', '{' },
+                {']','[' }
+            };
+
+            foreach (char c in str)
+            {
+                if (bracketPairs.ContainsValue(c)) // Only push open brackets to the stack
                 {
-                    chars.Push(str_array[i]);
+                    stack.Push(c);
                 }
-
-                if (str_array[i] == ')' || str_array[i] == ']' || str_array[i] == '}')
+                else if (bracketPairs.ContainsKey(c)) // Only pop when you see a closed bracket
                 {
-                    var topChar = chars.Pop();
-
-                    if((str_array[i] == ')' && topChar == '(') || (str_array[i] == ']' && topChar == '[') || (str_array[i] == '}' && topChar == '{'))
-                    {
-                        // true
-                    }
-                    else
+                    if (stack.Count == 0 || stack.Pop() != bracketPairs[c])
                     {
                         return false;
                     }
                 }
+                else
+                    continue;
             }
 
-            return true;
+            return stack.Count == 0;
         }
     }
 }
