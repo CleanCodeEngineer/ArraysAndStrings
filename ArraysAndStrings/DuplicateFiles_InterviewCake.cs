@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Security.Cryptography;
+﻿using System.Security.Cryptography;
 
 namespace ArraysAndStrings
 {
@@ -124,6 +119,73 @@ namespace ArraysAndStrings
                 var hash = sha.ComputeHash(digestBytes);
                 return BitConverter.ToString(hash).Replace("-", string.Empty);
             }
+        }
+    }
+
+    // Question: Given a list of file paths and contents, return all the files that have duplicate content, not just name. Use a class FilePaths with two properties: OriginalPath and DuplicatePath.
+    // Input:
+    // string[] files = {
+    // "/dir1/file1.txt(content1)",
+    // "/dir2/file2.txt(content1)",
+    // "/dir3/file3.txt(content2)",
+    // "/dir4/file4.txt(content1)"
+    // };
+
+    // Output:
+    // Original: /dir1/file1.txt, Duplicate: /dir2/file2.txt
+    // Original: /dir1/file1.txt, Duplicate: /dir4/file4.txt
+    public class FilePaths
+    {
+        public string OriginalPath { get; set; }
+        public string DuplicatePath { get; set; }
+
+        public FilePaths(string original, string duplicate)
+        {
+            OriginalPath = original;
+            DuplicatePath = duplicate;
+        }
+    }
+
+    public class DuplicateFileFinder
+    {
+        public static List<FilePaths> FindDuplicateFiles(string[] fileEntries)
+        {
+            var contentToPaths = new Dictionary<string, List<string>>();
+            var result = new List<FilePaths>();
+
+            foreach (var entry in fileEntries)
+            {
+                // Parse: "/dir1/file1.txt(content1)"
+                int leftParenIndex = entry.IndexOf('(');
+                int rightParenIndex = entry.IndexOf(')');
+
+                if (leftParenIndex == -1 && rightParenIndex == -1)
+                    continue;
+
+                string filePath = entry.Substring(0, leftParenIndex);
+                string content = entry.Substring(rightParenIndex + 1, rightParenIndex - leftParenIndex - 1);
+
+                if (!contentToPaths.ContainsKey(content))
+                    contentToPaths[content] = new List<string>();
+
+                contentToPaths[content].Add(filePath);
+            }
+
+            // Build result
+            foreach (var kvp in contentToPaths)
+            {
+                var paths = kvp.Value;
+                if (paths.Count > 1)
+                {
+                    string original = paths[0];
+                    for (int i = 1; i < paths.Count; i++)
+                    {
+                        result.Add(new FilePaths(original, paths[i]));
+                    }
+                }
+            }
+
+            return result;
         }
     }
 }
