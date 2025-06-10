@@ -3,6 +3,8 @@
     public class CandyCrush_Meta
     {
         // aaab
+        // Time Complexity: O(n²) worst case
+        // Space Complexity: O(n)
         public static string CandyCrushString(string s)
         {
             bool changed = true;
