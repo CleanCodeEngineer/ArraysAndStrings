@@ -8,6 +8,11 @@ namespace ArraysAndStrings
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("Meta second interview question (Candy Crush): ");
+            string output = CandyCrush_Meta.CandyCrushString("aba");
+            Console.WriteLine(output);
+            Console.ReadLine();
+
             //Console.WriteLine("Question 1.1:");
 
             //Console.WriteLine();
