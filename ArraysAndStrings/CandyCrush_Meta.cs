@@ -2,6 +2,8 @@
 {
     public class CandyCrush_Meta
     {
+        // Question: Given a string, repeatedly remove adjacent duplicate characters in groups of two or more.
+        // Keep repeating this process until no more characters can be removed. Return the final string.
         // aaab
         // Time Complexity: O(n²) worst case
         // Space Complexity: O(n)
